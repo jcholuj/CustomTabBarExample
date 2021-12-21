@@ -67,8 +67,9 @@ final class CustomTabBar: UIStackView {
         profileItem.rx.tapGesture()
             .when(.recognized)
             .bind { [weak self] _ in
-                self?.profileItem.animateClick {
-                    self?.selectItem(index: 0)
+                guard let self = self else { return }
+                self.profileItem.animateClick {
+                    self.selectItem(index: self.profileItem.index)
                 }
             }
             .disposed(by: disposeBag)
@@ -76,8 +77,9 @@ final class CustomTabBar: UIStackView {
         searchItem.rx.tapGesture()
             .when(.recognized)
             .bind { [weak self] _ in
-                self?.searchItem.animateClick {
-                    self?.selectItem(index: 1)
+                guard let self = self else { return }
+                self.searchItem.animateClick {
+                    self.selectItem(index: self.searchItem.index)
                 }
             }
             .disposed(by: disposeBag)
@@ -85,8 +87,9 @@ final class CustomTabBar: UIStackView {
         favoriteItem.rx.tapGesture()
             .when(.recognized)
             .bind { [weak self] _ in
-                self?.favoriteItem.animateClick {
-                    self?.selectItem(index: 2)
+                guard let self = self else { return }
+                self.favoriteItem.animateClick {
+                    self.selectItem(index: self.favoriteItem.index)
                 }
             }
             .disposed(by: disposeBag)
