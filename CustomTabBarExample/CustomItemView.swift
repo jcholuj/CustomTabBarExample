@@ -10,10 +10,10 @@ import SnapKit
 
 final class CustomItemView: UIView {
     
-    let nameLabel = UILabel()
-    let iconImageView = UIImageView()
-    let underlineView = UIView()
-    let containerView = UIView()
+    private let nameLabel = UILabel()
+    private let iconImageView = UIImageView()
+    private let underlineView = UIView()
+    private let containerView = UIView()
     let index: Int
     
     var isSelected = false {
@@ -39,12 +39,12 @@ final class CustomItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupHierarchy() {
+    private func setupHierarchy() {
         addSubview(containerView)
         containerView.addSubviews(nameLabel, iconImageView, underlineView)
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.center.equalToSuperview()
@@ -70,7 +70,7 @@ final class CustomItemView: UIView {
         }
     }
     
-    func setupProperties() {
+    private func setupProperties() {
         nameLabel.configureWith(item.name,
                                 color: .white.withAlphaComponent(0.4),
                                 alignment: .center,
@@ -92,6 +92,5 @@ final class CustomItemView: UIView {
                           options: .transitionCrossDissolve) { [unowned self] in
             self.iconImageView.image = self.isSelected ? self.item.selectedIcon : self.item.icon
         }
-
     }
 }

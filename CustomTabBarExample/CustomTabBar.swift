@@ -13,7 +13,6 @@ import RxGesture
 final class CustomTabBar: UIStackView {
     
     var itemTapped: Observable<Int> { itemTappedSubject.asObservable() }
-    var currentItem: Int = 0
     
     private lazy var customItemViews: [CustomItemView] = [profileItem, searchItem, favoriteItem]
     
@@ -40,11 +39,11 @@ final class CustomTabBar: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupHierarchy() {
+    private func setupHierarchy() {
         addArrangedSubviews([profileItem, searchItem, favoriteItem])
     }
     
-    func setupProperties() {
+    private func setupProperties() {
         distribution = .fillEqually
         alignment = .center
         
@@ -57,15 +56,14 @@ final class CustomTabBar: UIStackView {
         }
     }
     
-    func selectItem(index: Int) {
-        currentItem = index
+    private func selectItem(index: Int) {
         customItemViews.forEach { $0.isSelected = $0.index == index }
         itemTappedSubject.onNext(index)
     }
     
     //MARK: - Bindings
     
-    func bind() {
+    private func bind() {
         profileItem.rx.tapGesture()
             .when(.recognized)
             .bind { [weak self] _ in

@@ -15,9 +15,6 @@ class ViewController: UIViewController {
     init(item: CustomTabItem) {
         self.item = item
         super.init(nibName: nil, bundle: nil)
-        setupHierarchy()
-        setupLayout()
-        setupProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -26,6 +23,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupHierarchy()
+        setupLayout()
+        setupProperties()
     }
     
     private func setupHierarchy() {

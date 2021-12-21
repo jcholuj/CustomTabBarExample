@@ -11,7 +11,7 @@ import SnapKit
 
 class CustomTabBarController: UITabBarController {
     
-    var customTabBar: CustomTabBar = CustomTabBar()
+    private let customTabBar = CustomTabBar()
     
     private let disposeBag = DisposeBag()
 
@@ -29,18 +29,18 @@ class CustomTabBarController: UITabBarController {
         navigationController?.isNavigationBarHidden = true
     }
     
-    func setupHierarchy() {
+    private func setupHierarchy() {
         view.addSubview(customTabBar)
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         customTabBar.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview().inset(24)
             $0.height.equalTo(90)
         }
     }
     
-    func setupProperties() {
+    private func setupProperties() {
         tabBar.isHidden = true
         
         customTabBar.translatesAutoresizingMaskIntoConstraints = false

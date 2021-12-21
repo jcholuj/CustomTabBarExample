@@ -11,7 +11,9 @@ enum CustomTabItem: String, CaseIterable {
     case profile
     case search
     case favorite
-    
+}
+ 
+extension CustomTabItem {
     var viewController: UIViewController {
         switch self {
         case .profile:
